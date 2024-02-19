@@ -20,6 +20,10 @@ def pages_contact(request):
 def pages_register(request):
     template = 'pages-register.html'
     form = CustomerForm
+    if request.method == 'POST':
+        form = CustomerForm(request.POST)
+        if form.is_valid():
+            form.save()
     return render(request,template,{'form':form})
 
 def pages_login(request):
